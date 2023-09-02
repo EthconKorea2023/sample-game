@@ -2,21 +2,26 @@ import { useEffect, useMemo, useState } from "react";
 import {
   ButtonBase,
   CircularProgress,
+  Menu,
+  MenuItem,
   Paper,
   paperClasses,
   styled,
 } from "@mui/material";
 import { grey } from "@mui/material/colors";
 import clsx from "clsx";
-import { getTBAForEachCharacter,isOwnRing } from "../utils/nftUtil";
-// import useEnvStore from "../utils/store/envStore";
+import { isOwnRing } from "../utils/nftUtil";
+import useEnvStore from "../utils/store/envStore";
 
 const StyledBox = styled(Paper)(({ theme }) => ({
   display: "flex",
   flexWrap: "wrap",
   padding: theme.spacing(0.5),
   height: 332,
-  width: "100%",
+  width: 332,
+  position: "absolute",
+  top: "calc(50vh - 166px)",
+  left: 100,
   "@supports (backdrop-filter: blur(3px)) or (-webkit-backdrop-filter: blur(3px))":
     {
       WebkitBackdropFilter: "blur(15px)",
@@ -68,10 +73,11 @@ function ItemMenu({ anchorEl, onClose: handleClose }) {
   );
 }
 export default function InventoryBox() {
-  const [anchorEl, setAnchorEl] = React.useState(null);
+  const [anchorEl, setAnchorEl] = useState(null);
 
   const [rawItems, setItems] = useState([]);
   const [loading, setLoading] = useState(false);
+  const characterTBAArr = useEnvStore((state) => state.myTBA?.[0] ?? undefined);
 
   const items = useMemo(() => {
     if (rawItems.length >= 9) return rawItems;
@@ -91,7 +97,7 @@ export default function InventoryBox() {
 
   useEffect(() => {
     async function checkRing() {
-      if (isTransfer) return;
+      if (!characterTBAArr) return;
       setLoading(true);
 
       const hasRing = await isOwnRing(characterTBAArr);
@@ -115,7 +121,7 @@ export default function InventoryBox() {
     }
 
     checkRing();
-  }, []);
+  }, [characterTBAArr]);
 
   return (
     <StyledBox elevation={10} className={clsx(loading && "load")}>
@@ -123,7 +129,7 @@ export default function InventoryBox() {
         items.map((_item, _idx) =>
           _item ? (
             <>
-              <Paper component={ButtonBase} onClick={handleClick}>
+              <ButtonBase component={Paper} onClick={handleClick}>
                 <div
                   style={{
                     backgroundImage: `url(${_item.image})`,
@@ -134,7 +140,7 @@ export default function InventoryBox() {
                     height: "100%",
                   }}
                 />
-              </Paper>
+              </ButtonBase>
               <ItemMenu anchorEl={anchorEl} onClose={handleClose} />
             </>
           ) : (
