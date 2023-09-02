@@ -1,12 +1,15 @@
 import { useEffect, useState } from "react";
-import BiconomyButton from "./BiconomyButton";
-import { Typography, styled } from "@mui/material";
+import BiconomyButton from "./components/BiconomyButton";
+
 // import { motion as m } from "framer-motion";
 // import { DragDropContext } from "react-beautiful-dnd";
 
-import { useMandalaStore } from "~~/utils/mandalaStore";
-import useEnvStore from "~~/utils/store/envStore";
+// import { useMandalaStore } from "./utils/mandalaStore";
+import useEnvStore from "./utils/store/envStore";
 import GameCanvas from "./GameCanvas";
+import { blue, grey } from "@mui/material/colors";
+import Inventory from "./components/Inventory";
+import { Typography, styled } from "@mui/material";
 
 const StyledDiv = styled("div")(({ theme }) => ({
   width: "100%",
@@ -26,13 +29,16 @@ const StyledDiv = styled("div")(({ theme }) => ({
 // );
 
 export default function Root() {
-  const isLogin = useMandalaStore((state) => state.biconomySmartAccount);
+  const isLogin = useEnvStore((state) => state.biconomySmartAccount);
 
   return isLogin ? (
     <>
       <GameCanvas />
       <div style={{ position: "absolute", right: 0, top: 0, zIndex: 9999 }}>
         <BiconomyButton />
+      </div>
+      <div style={{ position: "absolute", left: 0, top: 0, zIndex: 9999 }}>
+        <Inventory />
       </div>
     </>
   ) : (
