@@ -38,3 +38,7 @@ body,
 .title > a {
   color: rgb(79, 189, 249);
 }
+
+#leva__root {
+  display: none;
+}
