@@ -11,6 +11,8 @@ import { blue, grey } from "@mui/material/colors";
 import Inventory from "./components/Inventory";
 import { Typography, styled } from "@mui/material";
 
+import { getTBAForEachCharacter } from "./utils/nftUtil";
+
 const StyledDiv = styled("div")(({ theme }) => ({
   width: "100%",
   height: "100%",
@@ -30,8 +32,19 @@ const StyledDiv = styled("div")(({ theme }) => ({
 
 export default function Root() {
   const isLogin = useEnvStore((state) => state.biconomySmartAccount);
+  const [myTBA, setMyTBA] = useEnvStore((state) => [state.myTBA, state.setMyTBA]);
 
-  return isLogin ? (
+  useEffect(() => {
+
+    if(isLogin){
+      getTBAForEachCharacter().then((res) => {
+        setMyTBA(res);
+      });
+    }
+
+  }, [isLogin]);
+
+  return myTBA ? (
     <>
       <GameCanvas />
       <div style={{ position: "absolute", right: 0, top: 0, zIndex: 9999 }}>

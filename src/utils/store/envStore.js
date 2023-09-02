@@ -25,4 +25,7 @@ export default create(set => ({
 
   biconomySmartAccount: null,
   setBiconomySmartAccount: (biconomySmartAccount) => set({ biconomySmartAccount }),
+
+  myTBA: undefined,
+  setMyTBA: v => set({ myTBA: v }),
 }));

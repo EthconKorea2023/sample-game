@@ -1,6 +1,7 @@
-import ERC1155OneRingABI from "../ERC1155OneRing.json";
-import abi from "../NFTContractABI.json";
+import ERC1155OneRingABI from "./ERC1155OneRing.json";
+import abi from "./NFTContractABI.json";
 import { ethers } from "ethers";
+import useEnvStore from "./store/envStore";
 
 
 export async function getTBAForEachCharacter() {

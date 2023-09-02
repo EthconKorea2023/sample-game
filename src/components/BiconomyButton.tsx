@@ -55,16 +55,16 @@ const Test = () => {
     if (!sdkRef.current) {
       const socialLoginSDK = new SocialLogin();
       //TODO: also add the deployment url to the whitelist
-      // const signature1 = await socialLoginSDK.whitelistUrl("http://localhost:3000");
-      const signature2 = await socialLoginSDK.whitelistUrl(
-        "https://nextjs-chunghosuk.vercel.app"
-      );
+      const signature1 = await socialLoginSDK.whitelistUrl("http://localhost:5173");
+      // const signature2 = await socialLoginSDK.whitelistUrl(
+      //   "https://nextjs-chunghosuk.vercel.app"
+      // );
       await socialLoginSDK.init({
         chainId: ethers.utils.hexValue(ChainId.LINEA_TESTNET).toString(),
         network: "testnet",
         whitelistUrls: {
-          // "http://localhost:3000": signature1,
-          "https://nextjs-chunghosuk.vercel.app": signature2,
+          "http://localhost:5173": signature1,
+          // "https://nextjs-chunghosuk.vercel.app": signature2,
         },
       });
       sdkRef.current = socialLoginSDK;

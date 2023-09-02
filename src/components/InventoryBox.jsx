@@ -8,7 +8,7 @@ import {
 } from "@mui/material";
 import { grey } from "@mui/material/colors";
 import clsx from "clsx";
-import { isOwnRing } from "~~/utils/mandala/utils";
+import { getTBAForEachCharacter,isOwnRing } from "../utils/nftUtils";
 import useEnvStore from "../utils/envStore";
 
 const StyledBox = styled(Paper)(({ theme }) => ({
