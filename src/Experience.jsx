@@ -37,7 +37,7 @@ export default function Experience() {
 
   return (
     <>
-      <Perf position="top-left" />
+      <Perf position="bottom-right" />
 
       <Grid
         args={[300, 300]}
