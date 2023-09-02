@@ -67,7 +67,7 @@ function ItemMenu({ anchorEl, onClose: handleClose }) {
     </Menu>
   );
 }
-export default function GameInventoryBox() {
+export default function InventoryBox() {
   const [anchorEl, setAnchorEl] = React.useState(null);
 
   const [rawItems, setItems] = useState([]);

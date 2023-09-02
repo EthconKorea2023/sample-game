@@ -2,6 +2,7 @@ import { ButtonBase, Typography, styled } from "@mui/material";
 import BusinessCenterOutlinedIcon from "@mui/icons-material/BusinessCenterOutlined";
 import { useState } from "react";
 import { blue, grey } from "@mui/material/colors";
+import InventoryBox from "./InventoryBox";
 
 export default function Inventory() {
   const [isOpen, setOpen] = useState(false);
@@ -19,7 +20,7 @@ export default function Inventory() {
       >
         <BusinessCenterOutlinedIcon />
       </ButtonBase>
-      
+      {isOpen && <InventoryBox />}
     </>
   );
 }
