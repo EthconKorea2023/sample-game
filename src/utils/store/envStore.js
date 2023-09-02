@@ -1,19 +1,19 @@
 import { create } from "zustand";
 
-export default create(set => ({
+export default create((set) => ({
   selectedGame: undefined,
-  setGame: v => set({ selectedGame: v }),
+  setGame: (v) => set({ selectedGame: v }),
 
   characterTBAArr: undefined,
-  setCharacterTBAArr: v => set({ characterTBAArr: v }),
+  setCharacterTBAArr: (v) => set({ characterTBAArr: v }),
 
   characterTokenURIArr: [],
-  setCharacterTokenURIArr: v => set({ characterTokenURIArr: v }),
+  setCharacterTokenURIArr: (v) => set({ characterTokenURIArr: v }),
 
   currentGameInfo: undefined,
-  setCurrentGameInfo: v => set({ currentGameInfo: v }),
+  setCurrentGameInfo: (v) => set({ currentGameInfo: v }),
   transferItem: undefined,
-  setTransferItem: v => set({ transferItem: v }),
+  setTransferItem: (v) => set({ transferItem: v }),
   clear: () =>
     set({
       selectedGame: undefined,
@@ -21,11 +21,14 @@ export default create(set => ({
       characterTokenURIArr: [],
       currentGameInfo: undefined,
       transferItem: undefined,
+      biconomySmartAccount: null,
+      myTBA: undefined,
     }),
 
   biconomySmartAccount: null,
-  setBiconomySmartAccount: (biconomySmartAccount) => set({ biconomySmartAccount }),
+  setBiconomySmartAccount: (biconomySmartAccount) =>
+    set({ biconomySmartAccount }),
 
   myTBA: undefined,
-  setMyTBA: v => set({ myTBA: v }),
+  setMyTBA: (v) => set({ myTBA: v }),
 }));
