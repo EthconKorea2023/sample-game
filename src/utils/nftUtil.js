@@ -24,6 +24,8 @@ export async function getTBAForEachCharacter() {
         tmpArr.push(TBAAddress2.toLowerCase());
     }
 
+    console.log(tmpArr);
+
     return tmpArr;
 }
 

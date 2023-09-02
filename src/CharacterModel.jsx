@@ -1,5 +1,5 @@
 import { useAnimations, useGLTF } from "@react-three/drei";
-import { Suspense, useEffect } from "react";
+import { Suspense, useEffect, useState } from "react";
 import * as THREE from "three";
 import useGame from "./stores/useGame";
 
@@ -7,6 +7,8 @@ export default function CharacterModel(props) {
   // Change the character src to yours
   const character = useGLTF("./Animated Platformer Character.glb");
   const animations = useAnimations(character.animations, character.scene);
+
+  const [isVisble, setIsVisible] = useState(true);
 
   /**
    * Character animations setup
@@ -46,6 +48,19 @@ export default function CharacterModel(props) {
     initializeAnimationSet(animationSet);
   }, []);
 
+  const toggleInvisible = () => {
+    console.log("invisible!")
+    setIsVisible((prev) => !prev);
+  };
+
+  useEffect(() => {
+    window.addEventListener("the_one_ring", () => toggleInvisible());
+
+    return () => {
+      window.removeEventListener("the_one_ring", () => toggleInvisible())
+    }
+  }, []);
+
   useEffect(() => {
     // Play animation
     const action =
@@ -77,6 +92,7 @@ export default function CharacterModel(props) {
   return (
     <Suspense fallback={<capsuleGeometry args={[0.3, 0.7]} />}>
       <primitive
+      visible={isVisble}
         object={character.scene}
         scale={0.45}
         position={[0, -0.9, 0]}

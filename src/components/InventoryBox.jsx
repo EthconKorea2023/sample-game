@@ -23,25 +23,25 @@ const StyledBox = styled(Paper)(({ theme }) => ({
   top: "calc(50vh - 166px)",
   left: 100,
   "@supports (backdrop-filter: blur(3px)) or (-webkit-backdrop-filter: blur(3px))":
-    {
-      WebkitBackdropFilter: "blur(15px)",
-      backdropFilter: "blur(15px)",
-      backgroundColor: `${grey[900]}4D`,
-      // border: `1px solid ${grey[900]}`,
-    },
+  {
+    WebkitBackdropFilter: "blur(15px)",
+    backdropFilter: "blur(15px)",
+    backgroundColor: `${grey[900]}4D`,
+    // border: `1px solid ${grey[900]}`,
+  },
   [`& > div.${paperClasses.root}`]: {
     width: 100,
     height: 100,
     // backgroundColor: grey[900],
     margin: theme.spacing(0.5),
     "@supports (backdrop-filter: blur(3px)) or (-webkit-backdrop-filter: blur(3px))":
-      {
-        WebkitBackdropFilter: "blur(15px)",
-        backdropFilter: "blur(15px)",
-        // backgroundColor: `${grey[900]}99`,
-        backgroundColor: "transparent",
-        border: `1px solid ${grey[900]}`,
-      },
+    {
+      WebkitBackdropFilter: "blur(15px)",
+      backdropFilter: "blur(15px)",
+      // backgroundColor: `${grey[900]}99`,
+      backgroundColor: "transparent",
+      border: `1px solid ${grey[900]}`,
+    },
     overflow: "hidden",
     [`& > div`]: {
       width: "100%",
@@ -56,6 +56,11 @@ const StyledBox = styled(Paper)(({ theme }) => ({
 function ItemMenu({ anchorEl, onClose: handleClose }) {
   const open = Boolean(anchorEl);
 
+  function OnTheOneRingEquip() {
+    window.dispatchEvent(new Event("the_one_ring"));
+    handleClose();
+  }
+
   return (
     <Menu
       id="basic-menu"
@@ -66,7 +71,7 @@ function ItemMenu({ anchorEl, onClose: handleClose }) {
         "aria-labelledby": "basic-button",
       }}
     >
-      <MenuItem onClick={handleClose}>equip</MenuItem>
+      <MenuItem onClick={OnTheOneRingEquip}>equip</MenuItem>
       {/* <MenuItem onClick={handleClose}>My account</MenuItem>
       <MenuItem onClick={handleClose}>Logout</MenuItem> */}
     </Menu>
