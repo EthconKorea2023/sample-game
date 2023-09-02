@@ -80,7 +80,7 @@ export default function Experience() {
         <Floor />
 
         {/* Shoting cubes */}
-        <ShotCube />
+        {/* <ShotCube /> */}
       </Physics>
     </>
   );
