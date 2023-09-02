@@ -8,8 +8,8 @@ import {
 } from "@mui/material";
 import { grey } from "@mui/material/colors";
 import clsx from "clsx";
-import { getTBAForEachCharacter,isOwnRing } from "../utils/nftUtils";
-import useEnvStore from "../utils/envStore";
+import { getTBAForEachCharacter,isOwnRing } from "../utils/nftUtil";
+// import useEnvStore from "../utils/store/envStore";
 
 const StyledBox = styled(Paper)(({ theme }) => ({
   display: "flex",

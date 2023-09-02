@@ -12,8 +12,10 @@ import "@biconomy/web3-auth/dist/src/style.css";
 import { Button, CircularProgress } from "@mui/material";
 import { ethers } from "ethers";
 import useEnvStore from "../utils/store/envStore";
+import { env } from "../env";
 
 console.log(ChainId.LINEA_TESTNET);
+
 
 const bundler: IBundler = new Bundler({
   bundlerUrl: "https://bundler.biconomy.io/api/v2/59140/abc", // you can get this value from biconomy dashboard.
@@ -23,7 +25,7 @@ const bundler: IBundler = new Bundler({
 });
 
 const paymaster: IPaymaster = new BiconomyPaymaster({
-  paymasterUrl: process.env.NEXT_PUBLIC_BICONOMY_PAYMASTER_URL || "",
+  paymasterUrl: env.VITE_BICONOMY_PAYMASTER_URL || "",
 });
 
 const Test = () => {
